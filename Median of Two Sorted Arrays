@@ -1,0 +1,28 @@
+class Solution(object):
+    def findMedianSortedArrays(self, n1, n2):
+        if len(n1) > len(n2):
+            n1, n2 = n2, n1
+
+        x, y = len(n1), len(n2)
+        l, h = 0, x
+
+        while l <= h:
+            partx = (l + h) // 2
+            party = (x + y + 1) // 2 - partx
+
+            malx = float('-inf') if partx == 0 else n1[partx - 1]
+            mirx = float('inf') if partx == x else n1[partx]
+
+            maly = float('-inf') if party == 0 else n2[party - 1]
+            miry = float('inf') if party == y else n2[party]
+
+            if malx <= miry and maly <= mirx:
+                if (x + y) % 2 == 0:
+                    return (max(malx, maly) + min(mirx, miry)) / 2.0
+                else:
+                    return max(malx, maly)
+            
+            elif malx > miry:
+                h = partx - 1
+            else:
+                l = partx + 1
