@@ -1,0 +1,17 @@
+class Solution(object):
+    def isPalindrome(self, x):
+
+        # converts the given input into the string.
+        s = str(x)
+        rev = ""
+
+        # loops through each character in the string and add them in rev.
+        for i in s:
+            rev = i + rev
+
+        # checks if it palindrome.
+        if (rev == s):
+            return True
+        else:
+            return False
+        
